@@ -90,6 +90,7 @@ export function generateCore() {
 		mode.value = initData.mode;
 		components.value = initData.components;
 		userState.value = initData.userState;
+
 		collateMail(initData.mail);
 		sessionId = initData.sessionId;
 		sessionTimestamp.value = new Date().getTime();
@@ -397,8 +398,21 @@ export function generateCore() {
 	 * @returns
 	 */
 	async function sendComponentUpdate(): Promise<void> {
+		
+		/*
+		Only send components created by the frontend (static), to avoid re-feeding the backend
+		those components created by the backend.
+		*/
+
+		const staticComponents = {};
+		
+		Object.entries(components.value).forEach(([componentId, component]) => {
+			if (componentId.startsWith("dyn-")) return;
+			staticComponents[componentId] = component;
+		});
+		
 		const payload = {
-			components: components.value,
+			components: staticComponents
 		};
 
 		return new Promise((resolve, reject) => {

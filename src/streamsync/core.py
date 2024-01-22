@@ -15,7 +15,7 @@ import re
 import json
 import math
 from streamsync.ss_types import Readable, InstancePath, StreamsyncEvent, StreamsyncEventResult, StreamsyncFileItem
-
+import uuid
 
 class Config:
 
@@ -422,7 +422,9 @@ class StreamsyncState():
 
 class Component:
 
-    def __init__(self, id: str, type: str, content: Dict[str, str] = {}):
+    def __init__(self, id: Optional[str], type: str, content: Dict[str, str] = {}):
+        if id is None:
+            id = f"dyn-{uuid.uuid4()}"
         self.id = id
         self.type = type
         self.content = content
@@ -431,6 +433,19 @@ class Component:
         self.handlers: Optional[Dict[str, str]] = None
         self.visible: Optional[bool] = None
         self.binding: Optional[Dict] = None
+
+    def attach(self, children: "Component" | List["Component"]) -> "Component":
+        if not isinstance(children, list):
+            children = [children]
+        for child in children:
+            child.parentId = self.id
+            component_manager.attach(child)
+            child.position = len(component_manager.get_descendents(self.id)) + 1
+        return self
+
+    def set(self, key: str, value: str) -> "Component":
+        self.content[key] = value
+        return self
 
     def to_dict(self) -> Dict:
         c_dict = {
@@ -447,7 +462,6 @@ class Component:
         if self.visible is not None:
             c_dict["visible"] = self.visible
         return c_dict
-
 
 class ComponentManager:
 
@@ -475,6 +489,8 @@ class ComponentManager:
 
         for component_id in removed_ids:
             if component_id == "root":
+                continue
+            if component_id.startswith("dyn-"):
                 continue
             self.components.pop(component_id)
         for component_id, sc in serialised_components.items():
