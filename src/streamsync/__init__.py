@@ -1,9 +1,9 @@
+import importlib.metadata
 from typing import Union, Optional, Dict, Any
 from streamsync.core import Readable, FileWrapper, BytesWrapper, Config
 from streamsync.core import initial_state, component_manager, session_manager, session_verifier
 
-__version__ = "0.6.0"
-VERSION = __version__
+VERSION = importlib.metadata.version("streamsync")
 
 component_manager
 session_manager
