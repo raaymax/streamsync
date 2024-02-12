@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/raaymax/streamsync/compare/v0.5.1...v0.6.0) (2024-02-12)
+
+
+### Features
+
+* other feature ([d42c9c9](https://github.com/raaymax/streamsync/commit/d42c9c9760bf0e73d7e2e15b83a82d031860d601))
+
+
+### Bug Fixes
+
+* something 2 ([0d48dd1](https://github.com/raaymax/streamsync/commit/0d48dd1f5283fa27f0ccab3f9467db2a013ca0ff))
+
 ## [0.5.1](https://github.com/raaymax/streamsync/compare/v0.5.0...v0.5.1) (2024-02-12)
 
 
