@@ -5,7 +5,7 @@
 		"streamsync": "./bin/streamsync"
 	},
 	"scripts": {
-		"test": "pytest -o log_cli=true ",
+		"test": "pytest tests -o log_cli=true ",
 		"lint": "mypy ./src/streamsync/*.py"
 	},
 	"dependencies": {

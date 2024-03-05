@@ -6,10 +6,22 @@
 			"inputs": ["src/**/*.vue", "src/**/*.ts", "public/**/*"],
       "outputs": ["../cli/src/streamsync/static/*"]
     },
+    "streamsync-cli#build": {
+			"env": ["OS", "PYTHON_VERSION"],
+			"dependsOn": ["^build"],
+			"inputs": ["src/**/*.py"],
+			"outputs": ["dist/*"]
+		},
+    "streamsync-docs#build": {
+			"dependsOn": ["^build"],
+			"inputs": ["docs/**/*.md", "docs/**/*.ts", "docs/**/*.css", "docs/**/*.js", "!docs/.vuepress/dist/*", "!docs/.vuepress/cache/**/*"],
+			"outputs": ["docs/.vuepress/dist/*"]
+		},
     "streamsync-cli#lint": {
 			"inputs": ["src/**/*.py"]
 		},
     "streamsync-cli#test": {
+			"env": ["OS", "PYTHON_VERSION"],
 			"inputs": ["src/**/*.py", "test/**/*.py"]
 		},
     "build": {
@@ -19,10 +31,23 @@
       "inputs": ["src/**/*.vue", "src/**/*.ts", "test/**/*.ts"]
     },
 		"lint": {
-			"inputs": ["src/**/*.ts", "src/**/*.vue"]
+			"inputs": ["src/**/*.js", "src/**/*.ts", "src/**/*.vue"]
 		},
 		"e2e": {
-			"dependsOn": ["^build", "^test"]
+			"env": ["OS"],
+			"dependsOn": ["^build"]
+		},
+		"e2e:chromium": {
+			"env": ["OS"],
+			"dependsOn": ["^build"]
+		},
+		"e2e:firefox": {
+			"env": ["OS"],
+			"dependsOn": ["^build"]
+		},
+		"e2e:webkit": {
+			"env": ["OS"],
+			"dependsOn": ["^build"]
 		},
     "dev": {
       "cache": false,

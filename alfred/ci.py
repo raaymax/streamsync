@@ -19,10 +19,10 @@ def ci(front, back, e2e):
 
 @alfred.command("ci.mypy", help="typing checking with mypy on ./src/streamsync")
 def ci_mypy():
-    alfred.run("mypy ./src/streamsync --exclude app_templates/*")
+    alfred.run("mypy ./cli/src/streamsync --exclude app_templates/*")
 
 
-@alfred.command("ci.pytest", help="run pytest on ./tests")
+@alfred.command("ci.pytest", help="run pytest on ./cli/tests")
 def ci_test():
-    os.chdir("tests")
+    os.chdir("cli/tests")
     alfred.run("pytest")

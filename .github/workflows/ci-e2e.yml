@@ -40,4 +40,7 @@ jobs:
         run: npx playwright install ${{ matrix.browser }} --with-deps
 
       - name: Run E2E tests
-        run: poetry run alfred ci --e2e=${{ matrix.browser }}
+        run: poetry run npm run e2e:${{ matrix.browser }}
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
+          OS: linux

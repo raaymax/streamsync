@@ -38,4 +38,7 @@ jobs:
         run: npm ci 
 
       - name: run continuous integration pipeline
-        run: poetry run alfred ci
+        run: poetry run npm run ci
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
+          OS: windows 
