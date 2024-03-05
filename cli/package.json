@@ -1,12 +1,9 @@
 {
 	"name": "streamsync-cli",
 	"version": "0.0.0",
-	"bin": {
-		"streamsync": "./bin/streamsync"
-	},
 	"scripts": {
 		"test": "pytest tests -o log_cli=true ",
-		"lint": "mypy ./src/streamsync/*.py"
+		"lint": "mypy ./src/streamsync --exclude app_templates/*"
 	},
 	"dependencies": {
 		"streamsync-ui": "*"
