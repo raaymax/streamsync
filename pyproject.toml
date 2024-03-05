@@ -21,7 +21,7 @@ classifiers = [
     "Development Status :: 4 - Beta"
 ]
 packages = [
-    { include = "streamsync", from = "src" }
+    { include = "streamsync", from = "cli/src" }
 ]
 
 [tool.poetry.dependencies]

@@ -22,9 +22,9 @@ poetry run  mypy ./src/streamsync/*.py
 # APP PROVISIONING
 
 rm -rf ./src/streamsync/app_templates/*
-cp -r ./apps/default ./src/streamsync/app_templates
-cp -r ./apps/hello ./src/streamsync/app_templates
-cp -r ./apps/quickstart ./src/streamsync/app_templates
+cp -r ./apps/default ./cli/src/streamsync/app_templates
+cp -r ./apps/hello ./cli/src/streamsync/app_templates
+cp -r ./apps/quickstart ./cli/src/streamsync/app_templates
 
 # PYTHON PACKAGE BUILD
 

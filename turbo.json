@@ -1,0 +1,32 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+	"pipeline": {
+    "streamsync-ui#build": {
+      "dependsOn": ["^build"],
+			"inputs": ["src/**/*.vue", "src/**/*.ts", "public/**/*"],
+      "outputs": ["../cli/src/streamsync/static/*"]
+    },
+    "streamsync-cli#lint": {
+			"inputs": ["src/**/*.py"]
+		},
+    "streamsync-cli#test": {
+			"inputs": ["src/**/*.py", "test/**/*.py"]
+		},
+    "build": {
+      "dependsOn": ["^build"]
+		},
+    "test": {
+      "inputs": ["src/**/*.vue", "src/**/*.ts", "test/**/*.ts"]
+    },
+		"lint": {
+			"inputs": ["src/**/*.ts", "src/**/*.vue"]
+		},
+		"e2e": {
+			"dependsOn": ["^build", "^test"]
+		},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "playwright test --project=chromium --reporter=list",
-    "test:ci": "playwright test",
-    "test:chromium:ci": "playwright test --project=chromium",
-    "test:firefox:ci": "playwright test --project=firefox",
-    "test:webkit:ci": "playwright test --project=webkit",
-    "test:ui": "playwright test --project=chromium --ui"
+    "e2e": "playwright test --project=chromium --reporter=list",
+    "e2e:ci": "playwright test",
+    "e2e:chromium:ci": "playwright test --project=chromium",
+    "e2e:firefox:ci": "playwright test --project=firefox",
+    "e2e:webkit:ci": "playwright test --project=webkit",
+    "e2e:ui": "playwright test --project=chromium --ui"
   },
   "dependencies": {
+		"streamsync-cli": "*",
     "express": "4.18.2",
     "http-proxy": "1.18.1"
   },

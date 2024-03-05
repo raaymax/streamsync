@@ -56,6 +56,8 @@ class TestAppRunner:
     @pytest.mark.asyncio
     @pytest.mark.usefixtures("setup_app_runner")
     async def test_pre_session(self, setup_app_runner) -> None:
+        print('tutaj', test_app_dir)
+
         with setup_app_runner(test_app_dir, "run") as ar:
             er = EventRequest(
                 type="event",

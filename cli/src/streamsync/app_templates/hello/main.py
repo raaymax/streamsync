@@ -6,9 +6,6 @@ import statistics
 
 from streamsync.core import StreamsyncState
 
-# EVENT HANDLERS
-
-
 def handle_timer_tick(state: StreamsyncState):
     df = state["random_df"]
     for i in range(5):
