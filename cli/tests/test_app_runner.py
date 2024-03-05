@@ -178,8 +178,10 @@ class TestAppRunner:
             await ar.dispatch_message(None, si)
             bad_button_instance_path = [
                 {"componentId": "root", "instanceNumber": 0},
-                {"componentId": "28a2212b-bc58-4398-8a72-2554e5296490", "instanceNumber": 0},
-                {"componentId": "232d749a-5e0c-4802-bbe1-f8cae06db112", "instanceNumber": 0}
+                {"componentId": "28a2212b-bc58-4398-8a72-2554e5296490",
+                    "instanceNumber": 0},
+                {"componentId": "232d749a-5e0c-4802-bbe1-f8cae06db112",
+                    "instanceNumber": 0}
             ]
             ev_req = EventRequest(type="event", payload=StreamsyncEvent(
                 type="click",
@@ -198,7 +200,7 @@ class TestAppRunner:
                 ar.update_code(None, "exec(virus)")
             with pytest.raises(PermissionError):
                 ar.save_code(None, "exec(virus)")
-    
+
     def run_loader_thread(self, app_runner: AppRunner) -> None:
         app_runner.update_code(None, "print('188542')")
 
@@ -216,8 +218,10 @@ class TestAppRunner:
         with setup_app_runner(test_app_dir, "edit") as ar:
             ar.hook_to_running_event_loop()
             ar.load()
-            wait_update_task = asyncio.create_task(self.wait_for_code_update(ar))
-            loader_thread = threading.Thread(target=self.run_loader_thread, args=(ar,))
+            wait_update_task = asyncio.create_task(
+                self.wait_for_code_update(ar))
+            loader_thread = threading.Thread(
+                target=self.run_loader_thread, args=(ar,))
             loader_thread.start()
             code_update_result = await wait_update_task
             loader_thread.join()
