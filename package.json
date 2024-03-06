@@ -19,9 +19,9 @@
     "docs:dev": "turbo docs:dev",
     "docs:preview": "turbo docs:preview",
 
-		"test:ci": "npm run -ws test",
-		"build:ci": "npm run -ws build",
-    "lint:ci": "npm run -ws lint:ci",
+		"test:ci": "npm run --if-present -ws test",
+		"build:ci": "npm run --if-present -ws build",
+    "lint:ci": "npm run --if-present -ws lint:ci",
     "e2e:firefox:ci": "npm run -w streamsync-e2e e2e:firefox",
     "e2e:chromium:ci": "npm run -w streamsync-e2e e2e:chromium",
     "e2e:webkit:ci": "npm run -w streamsync-e2e e2e:webkit",
