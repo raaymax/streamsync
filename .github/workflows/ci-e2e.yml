@@ -14,6 +14,9 @@ jobs:
     steps: 
       - uses: actions/checkout@v3
 
+      - name: Install poetry
+        run: pipx install poetry
+
       - name: Set up Python 3.11.8
         uses: actions/setup-python@v4
         with:
@@ -26,18 +29,8 @@ jobs:
           node-version: 18
           cache: npm
 
-      - name: Cache turbo build setup
-        uses: actions/cache@v4
-        with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
-
-      - name: update package manager & install python3 environment
-        run: |
-          sudo pip install poetry
-          poetry install --with build
+      - name: install python3 environment
+        run: poetry install --with build
 
       - name: Install npm dependencies
         run: npm ci
@@ -47,7 +40,4 @@ jobs:
         run: npx playwright install ${{ matrix.browser }} --with-deps
 
       - name: Run E2E tests
-        run: poetry run npm run e2e:${{ matrix.browser }}
-        env:
-          PYTHON_VERSION: ${{ matrix.python-version }}
-          OS: linux
+        run: poetry run alfred ci --e2e=${{ matrix.browser }}

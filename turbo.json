@@ -49,7 +49,16 @@
 			"env": ["OS"],
 			"dependsOn": ["^build"]
 		},
-    "dev": {
+    "e2e:ui": {
+			"dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "ui:dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "docs:dev": {
       "cache": false,
       "persistent": true
     }

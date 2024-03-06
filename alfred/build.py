@@ -3,7 +3,6 @@ import shutil
 
 import alfred
 
-
 @alfred.command("build", help="build apps package for pypi")
 @alfred.option("--ignore-ci", is_flag=True, help="ignore continuous integration pipeline")
 def build(ignore_ci: bool = False):
@@ -17,8 +16,8 @@ def build(ignore_ci: bool = False):
 
 @alfred.command("build.app_provisionning", help="update app templates using ./apps", hidden=True)
 def build_app_provisionning():
-    if os.path.isdir('src/streamsync/app_templates'):
-        shutil.rmtree('src/streamsync/app_templates')
+    if os.path.isdir('cli/src/streamsync/app_templates'):
+        shutil.rmtree('cli/src/streamsync/app_templates')
 
     shutil.copytree( 'apps/default', 'src/streamsync/app_templates/default')
     shutil.copytree( 'apps/hello', 'src/streamsync/app_templates/hello')
