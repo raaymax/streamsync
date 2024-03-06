@@ -33,6 +33,9 @@
 		"lint": {
 			"inputs": ["src/**/*.js", "src/**/*.ts", "src/**/*.vue"]
 		},
+		"lint:ci": {
+			"inputs": ["src/**/*.js", "src/**/*.ts", "src/**/*.vue"]
+		},
 		"e2e": {
 			"env": ["OS"],
 			"dependsOn": ["^build"]
