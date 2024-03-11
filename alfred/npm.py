@@ -10,6 +10,10 @@ def npm_lint():
 def npm_test(browser):
     alfred.run("npm run e2e:"+browser+":ci")
 
+@alfred.command("npm.fulle2e", help="run full e2e tests")
+def npm_full_e2e():
+    alfred.run("npm run e2e:ci")
+
 @alfred.command("npm.build", help="build ui code")
 def npm_build():
     alfred.run("npm run build:ci")

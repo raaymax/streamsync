@@ -17,6 +17,14 @@ def ci(front, back, e2e):
     if e2e:
         alfred.invoke_command("npm.e2e", browser=e2e)
 
+@alfred.command("full-check", help="full app check")
+def full_check():
+    alfred.invoke_command("ci.mypy")
+    alfred.invoke_command("ci.pytest")
+    alfred.invoke_command("npm.lint")
+    alfred.invoke_command("build")
+    alfred.invoke_command("npm.fulle2e")
+
 @alfred.command("ci.mypy", help="typing checking with mypy on ./src/streamsync")
 def ci_mypy():
     alfred.run("mypy ./src/streamsync --exclude app_templates/*")

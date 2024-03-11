@@ -13,6 +13,7 @@ def build(ignore_ci: bool = False):
         alfred.invoke_command("npm.build")
 
     alfred.invoke_command("build.app_provisionning")
+    alfred.invoke_command("build.static_provisionning")
     alfred.invoke_command("build.poetry")
 
 @alfred.command("build.app_provisionning", help="update app templates using ./apps", hidden=True)
@@ -22,6 +23,13 @@ def build_app_provisionning():
 
     shutil.copytree( 'apps/default', 'src/streamsync/app_templates/default')
     shutil.copytree( 'apps/hello', 'src/streamsync/app_templates/hello')
+
+@alfred.command("build.static_provisionning", help="update streamsync ui", hidden=True)
+def build_static_provisionning():
+    if os.path.isdir('src/streamsync/static'):
+        shutil.rmtree('src/streamsync/static')
+
+    shutil.copytree( 'ui/dist', 'src/streamsync/static')
 
 @alfred.command("build.poetry", help="build python packages with poetry", hidden=True)
 def build_poetry():
